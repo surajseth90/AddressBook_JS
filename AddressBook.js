@@ -58,5 +58,11 @@ class AddressBook {
         }
     }
 }
-let addressBook = new AddressBook("Suraj", "Gupta", "Badoni", "Datia", "MP", 475686, "896262921962", "suraj@gmaill.com");
-console.log(addressBook);
+let addressBookArrays = new Array();
+try{
+     addressBookArrays.push(new AddressBook("Suraj", "Gupta", "Badoni", "Datia", "MP", 475686, "8962921962", "suraj@gmaill.com"));
+     addressBookArrays.push(new AddressBook("Sonali","Rathore","Padhar","Betul","MP",280001,"1234560789","sonali@gmail.com"));
+     console.log(addressBookArrays);
+}catch(e){
+    console.log(e);
+}
