@@ -64,7 +64,7 @@ class AddressBook {
 }
 let booleanValue;
 do {
-    let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n2. Edit Contact - Press 3 \n ");
+    let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n2. Edit Contact - Press 3 \n4. Delete Contact - Press 4\n ");
     switch (action) {
         case 1:
             console.log(addressBookArray);
@@ -77,6 +77,9 @@ do {
         case 3:
             editContact();
             break;
+
+        case 4:
+            deleteContact();
     }
     booleanValue = read.question("Do you want to execute again , press true/false : ")
 } while (booleanValue)
@@ -115,5 +118,14 @@ function addContact() {
         console.log(addressBookArray);
     } catch (e) {
         console.log(e);
+    }
+}
+
+function deleteContact() {
+    let deleteByFirstName = read.question("Enter First Name to be deleted : ");
+    for (let i = 0; i < addressBookArray.length; i++) {
+        if (addressBookArray[i].firstName == deleteByFirstName) {
+            addressBookArray.splice(i, 1);
+        }
     }
 }
