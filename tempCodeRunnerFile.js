@@ -1,0 +1,1 @@
+var read=require("readline-sync")
