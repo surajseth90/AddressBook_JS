@@ -111,6 +111,10 @@ function editContact() {
 function addContact() {
     let firstName = read.question("Enter First Name of the person : ");
     let lastName = read.question("Enter last Name of the person : ");
+    if(addressBookArray.find((person)=>(person.firstName+person.lastName)==(firstName+lastName))){   
+        console.log("Name is already present in Address Book !!");
+        return;
+    }
     let address = read.question("Enter address of the person : ");
     let city = read.question("Enter city name : ");
     let state = read.question("Enter state name of the person : ");
