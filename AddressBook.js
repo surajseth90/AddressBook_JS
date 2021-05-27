@@ -61,13 +61,18 @@ class AddressBook {
             this.email = email;
         }
     }
+
+    toString(){
+        return "Firstname: "+this.firstName+" Lastname: "+this.lastName+" Address: "+this.address+" City: "+this.city+
+        " State: "+this.state+" Zip: "+this.zip+" Phone Number: "+this.phoneNumber+" Email: "+this.email;
+    }
 }
 let booleanValue;
 do {
     let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n3. Edit Contact - Press 3 \n4. Delete Contact - Press 4\n5. Count Contacts - Press 5 \n6. Search Contact - Press 6\n");
     switch (action) {
         case 1:
-            console.log(addressBookArray);
+            console.log(addressBookArray.sort());
             break;
 
         case 2:
@@ -107,7 +112,6 @@ function editContact() {
             addContact().zip = addressBookArray[i].zip;
             addContact().phoneNumber = addressBookArray[i].phoneNumber;
             addContact().email = addressBookArray[i].email;
-            console.log(addressBookArray)
         } else console.log("Please Enter a valid First Name")
     }
 }
@@ -129,7 +133,6 @@ function addContact() {
         let person = new AddressBook(firstName, lastName, address, city, state, zip, phoneNumber, email);
         addressBookArray.push(person);
         console.log("Contact is added. ");
-        console.log(addressBookArray);
     } catch (e) {
         console.log(e);
     }
@@ -156,14 +159,14 @@ function searchAndViewContact() {
         contacts = addressBookArray.filter(contact => contact.city === city);
         countByCity = contacts.reduce(person => person + 1, 0);
         console.log("Total number of contacts in "+ city +" is : " + countByCity)
-        console.log(contacts)
+        console.log(contacts.sort())
 
     } else if (searchBy == stateCode) {
         let state = read.question("Enter the name of City : ")
         contacts = addressBookArray.filter(contact => contact.state === state);
         countByState = contacts.reduce(person => person + 1, 0);
         console.log("Total number of contacts in "+ state +" is : " + countByState)
-        console.log(contacts)
+        console.log(contacts.sort())
 
     } else {
         console.log("Please enter a valid Input")
