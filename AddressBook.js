@@ -64,7 +64,7 @@ class AddressBook {
 }
 let booleanValue;
 do {
-    let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n2. Edit Contact - Press 3 \n4. Delete Contact - Press 4\n5. Count Contacts - Press 5\n");
+    let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n3. Edit Contact - Press 3 \n4. Delete Contact - Press 4\n5. Count Contacts - Press 5 \n6. Search Contact - Press 6\n");
     switch (action) {
         case 1:
             console.log(addressBookArray);
@@ -83,7 +83,11 @@ do {
             break;
 
         case 5:
-            console.log("Number of Contacts in Address Book is : "+addressBookArray.reduce(person=>person+1,0));
+            console.log("Number of Contacts in Address Book is : " + addressBookArray.reduce(person => person + 1, 0));
+            break;
+
+        case 6:
+            searchContact();
             break;
 
     }
@@ -111,7 +115,7 @@ function editContact() {
 function addContact() {
     let firstName = read.question("Enter First Name of the person : ");
     let lastName = read.question("Enter last Name of the person : ");
-    if(addressBookArray.find((person)=>(person.firstName+person.lastName)==(firstName+lastName))){   
+    if (addressBookArray.find((person) => (person.firstName + person.lastName) == (firstName + lastName))) {
         console.log("Name is already present in Address Book !!");
         return;
     }
@@ -137,5 +141,23 @@ function deleteContact() {
         if (addressBookArray[i].firstName == deleteByFirstName) {
             addressBookArray.splice(i, 1);
         }
+    }
+}
+
+function searchContact() {
+    const cityCode = 1;
+    const stateCode = 2;
+    let searchBy = read.questionInt("From Which you want to search ,\nBy city - Press 1\nBy State - Press 2\n");
+    if (searchBy == cityCode) {
+        let city = read.question("Enter the name of City : ")
+        console.log(addressBookArray.filter(contact => contact.city === city));
+
+    } else if (searchBy == stateCode) {
+        let state = read.question("Enter the name of City : ")
+        console.log(addressBookArray.filter(contact => contact.state === state));
+
+    } else {
+        console.log("Please enter a valid Input")
+        searchContact();
     }
 }
