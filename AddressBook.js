@@ -147,14 +147,23 @@ function deleteContact() {
 function searchAndViewContact() {
     const cityCode = 1;
     const stateCode = 2;
+    let contacts = new Array();
+    let countByCity = 0 ;
+    let countByState = 0;
     let searchBy = read.questionInt("From Which you want to search ,\nBy city - Press 1\nBy State - Press 2\n");
     if (searchBy == cityCode) {
         let city = read.question("Enter the name of City : ")
-        console.log(addressBookArray.filter(contact => contact.city === city));
+        contacts = addressBookArray.filter(contact => contact.city === city);
+        countByCity = contacts.reduce(person => person + 1, 0);
+        console.log("Total number of contacts in "+ city +" is : " + countByCity)
+        console.log(contacts)
 
     } else if (searchBy == stateCode) {
         let state = read.question("Enter the name of City : ")
-        console.log(addressBookArray.filter(contact => contact.state === state));
+        contacts = addressBookArray.filter(contact => contact.state === state);
+        countByState = contacts.reduce(person => person + 1, 0);
+        console.log("Total number of contacts in "+ state +" is : " + countByState)
+        console.log(contacts)
 
     } else {
         console.log("Please enter a valid Input")
