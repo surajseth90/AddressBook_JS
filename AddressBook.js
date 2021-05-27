@@ -64,7 +64,7 @@ class AddressBook {
 }
 let booleanValue;
 do {
-    let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n2. Edit Contact - Press 3 \n4. Delete Contact - Press 4\n ");
+    let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n2. Edit Contact - Press 3 \n4. Delete Contact - Press 4\n5. Count Contacts - Press 5\n");
     switch (action) {
         case 1:
             console.log(addressBookArray);
@@ -80,6 +80,12 @@ do {
 
         case 4:
             deleteContact();
+            break;
+
+        case 5:
+            console.log("Number of Contacts in Address Book is : "+addressBookArray.reduce(person=>person+1,0));
+            break;
+
     }
     booleanValue = read.question("Do you want to execute again , press true/false : ")
 } while (booleanValue)
