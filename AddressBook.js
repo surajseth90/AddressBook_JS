@@ -62,14 +62,14 @@ class AddressBook {
         }
     }
 
-    toString(){
-        return "Firstname: "+this.firstName+" Lastname: "+this.lastName+" Address: "+this.address+" City: "+this.city+
-        " State: "+this.state+" Zip: "+this.zip+" Phone Number: "+this.phoneNumber+" Email: "+this.email;
+    toString() {
+        return "Firstname: " + this.firstName + " Lastname: " + this.lastName + " Address: " + this.address + " City: " + this.city +
+            " State: " + this.state + " Zip: " + this.zip + " Phone Number: " + this.phoneNumber + " Email: " + this.email;
     }
 }
 let booleanValue;
 do {
-    let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n3. Edit Contact - Press 3 \n4. Delete Contact - Press 4\n5. Count Contacts - Press 5 \n6. Search Contact - Press 6\n");
+    let action = read.questionInt("What do you want to do : \n1. Show Contacts - Press 1  \n2. Add Contact - Press 2 \n3. Edit Contact - Press 3 \n4. Delete Contact - Press 4\n5. Count Contacts - Press 5 \n6. Search Contact - Press 6 \n7. View sorted contacts by city or state or zip - Press 7\n");
     switch (action) {
         case 1:
             console.log(addressBookArray.sort());
@@ -93,6 +93,10 @@ do {
 
         case 6:
             searchAndViewContact();
+            break;
+
+        case 7:
+            sortByCityOrState();
             break;
 
     }
@@ -151,25 +155,48 @@ function searchAndViewContact() {
     const cityCode = 1;
     const stateCode = 2;
     let contacts = new Array();
-    let countByCity = 0 ;
+    let countByCity = 0;
     let countByState = 0;
     let searchBy = read.questionInt("From Which you want to search ,\nBy city - Press 1\nBy State - Press 2\n");
     if (searchBy == cityCode) {
         let city = read.question("Enter the name of City : ")
         contacts = addressBookArray.filter(contact => contact.city === city);
         countByCity = contacts.reduce(person => person + 1, 0);
-        console.log("Total number of contacts in "+ city +" is : " + countByCity)
+        console.log("Total number of contacts in " + city + " is : " + countByCity)
         console.log(contacts.sort())
 
     } else if (searchBy == stateCode) {
         let state = read.question("Enter the name of City : ")
         contacts = addressBookArray.filter(contact => contact.state === state);
         countByState = contacts.reduce(person => person + 1, 0);
-        console.log("Total number of contacts in "+ state +" is : " + countByState)
+        console.log("Total number of contacts in " + state + " is : " + countByState)
         console.log(contacts.sort())
 
     } else {
         console.log("Please enter a valid Input")
         searchAndViewContact();
+    }
+}
+
+function sortByCityOrState() {
+    const cityCode = 1;
+    const stateCode = 2;
+    const zip = 3;
+    let sortBy = read.question("By Which you want to view Sorted Contacts ,\nBy city - Press 1\nBy State - Press 2\nBy Zip - Press 3\n")
+    if (sortBy == cityCode) {
+        addressBookArray.sort(function (a, b) { return a.city.localeCompare(b.city) });
+        for (let i = 0; i < addressBookArray.length; i++)
+            console.log(addressBookArray[i].toString(), "\n");
+    } else if (sortBy == stateCode) {
+        addressBookArray.sort(function (a, b) { return a.state.localeCompare(b.state) });
+        for (let i = 0; i < addressBookArray.length; i++)
+            console.log(addressBookArray[i].toString(), "\n");
+    } else if (sortBy == zip) {
+        addressBookArray.sort(function (a, b) { return parseInt(a.zip) - parseInt(b.zip) });
+        for (let i = 0; i < addressBookArray.length; i++)
+            console.log(addressBookArray[i].toString(), "\n");
+    } else {
+        console.log("Please enter a valid Input")
+        sortByCityOrState();
     }
 }
