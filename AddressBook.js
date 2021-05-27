@@ -87,7 +87,7 @@ do {
             break;
 
         case 6:
-            searchContact();
+            searchAndViewContact();
             break;
 
     }
@@ -144,7 +144,7 @@ function deleteContact() {
     }
 }
 
-function searchContact() {
+function searchAndViewContact() {
     const cityCode = 1;
     const stateCode = 2;
     let searchBy = read.questionInt("From Which you want to search ,\nBy city - Press 1\nBy State - Press 2\n");
@@ -158,6 +158,6 @@ function searchContact() {
 
     } else {
         console.log("Please enter a valid Input")
-        searchContact();
+        searchAndViewContact();
     }
 }
